@@ -1,37 +1,57 @@
 [
     {
         "name": "Palm Island",
-        "price": 70,
-        "complexity": 2,
-        "players": 2,
-        "playability": 8
+        "data": {
+            "price": 70,
+            "players": 2
+        },
+        "judgement": {
+            "complexity": [1, 2],
+            "playability": [3, 4]
+        }
     },
     {
         "name": "Dixit",
-        "price": 290,
-        "complexity": 5,
-        "players": 6,
-        "playability": 7
+        "data": {
+            "price": 290,
+            "players": 6
+        },
+        "judgement": {
+            "complexity": [3, 3],
+            "playability": [3, 3]
+        }
     },
     {
         "name": "Radlands",
-        "price": 288,
-        "complexity": 5,
-        "players": 2,
-        "playability": 7
+        "data": {
+            "price": 288,
+            "players": 2
+        },
+        "judgement": {
+            "complexity": [3, 3],
+            "playability": [3, 3]
+        }
     },
     {
         "name": "Eldritch Horror",
-        "price": 460,
-        "complexity": 6,
-        "players": 8,
-        "playability": 10
+        "data": {
+            "price": 460,
+            "players": 8
+        },
+        "judgement": {
+            "complexity": [2, 5],
+            "playability": [5, 5]
+        }
     },
     {
         "name": "Scythe",
-        "price": 700,
-        "complexity": 5,
-        "players": 5,
-        "playability": 5
+        "data": {
+            "price": 700,
+            "players": 5
+        },
+        "judgement": {
+            "complexity": [3, 3],
+            "playability": [3, 4]
+        }
     }
 ]

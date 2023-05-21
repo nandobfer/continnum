@@ -15,25 +15,23 @@ def getBoardgames():
 
 def setCriterion(criteria, dm, alternatives):
     for alternative in alternatives:
-        rating = judge(criteria, alternative)
-        criteria.add_new_alternative_judgment(AlternativeJudgment(alternative.id, dm.id, rating, rating))
+        judge(criteria, alternative, dm)
 
-def judge(criteria, alternative):
-    if criteria.description == 'cost':
-        return judgePrice(boardgames[alternative.id-1]['price'])
+def judge(criteria, alternative, dm):
 
-    elif criteria.description == 'complexity':
-        return boardgames[alternative.id-1]['complexity'] / 2
-        
-    elif criteria.description == 'players':
-        return judgePrice(boardgames[alternative.id-1]['players'])
+    game = boardgames[alternative.id-1]
 
-    elif criteria.description == 'playability':
-        return boardgames[alternative.id-1]['playability'] / 2
+    for index, data in enumerate(game['data']):
+        rating = judgeData(game['data'][data], data)
+        criteria[index].add_new_alternative_judgment(AlternativeJudgment(alternative.id, dm.id, rating, rating))
 
-def judgePrice(price):
-    min_value = min(boardgames, key=lambda x:x['price'])['price']
-    max_value = max(boardgames, key=lambda x:x['price'])['price']
-    rating = 1 + ((price - min_value) * (5 - 1)) / (max_value - min_value)
+    for index, judgement in enumerate(game['judgement']):
+        rating = game['judgement'][judgement]
+        criteria[index+2].add_new_alternative_judgment(AlternativeJudgment(alternative.id, dm.id, rating[0], rating[1]))
+
+def judgeData(value, data):
+    min_value = min(boardgames, key=lambda x:x['data'][data])['data'][data]
+    max_value = max(boardgames, key=lambda x:x['data'][data])['data'][data]
+    rating = 1 + ((value - min_value) * (5 - 1)) / (max_value - min_value)
 
     return rating

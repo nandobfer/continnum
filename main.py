@@ -32,7 +32,7 @@ alt_6 = Alternative(6, "Scythe") # R$ 700
 
 # Modelinho
 
-criteria = [cri_custo, cri_complexidade, cri_jogadores, cri_jogabilidade]
+criteria = [cri_custo, cri_jogadores, cri_complexidade, cri_jogabilidade]
 alternatives = getBoardgames()
 decision_makers = [dm1, dm2]
 model = Model(5, criteria, alternatives, decision_makers)
@@ -76,11 +76,9 @@ total_normalized_cci = model.calculate_normalized_weight()
 ################
 
 # Julgamentos sobre as alternativas
-for item in criteria:
-    setCriterion(item, dm1, alternatives)
+setCriterion(criteria, dm1, alternatives)
+setCriterion(criteria, dm2, alternatives)
 
-for item in criteria:
-    setCriterion(item, dm2, alternatives)
 
 # cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_1.id, dm1.id, 1, 1))
 # # cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_2.id, dm1.id, 0, 0))
