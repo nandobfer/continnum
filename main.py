@@ -5,6 +5,8 @@ from src.enumerations.criterion_type import CriterionType
 from src.classes.model import Model
 from src.classes.alternative import Alternative
 from src.classes.alternative_judgment import AlternativeJudgment
+from src.boardgames import getBoardgames, setCriterion
+
 
 ##################################
 # Criação dos objetos no cliente #
@@ -15,10 +17,10 @@ dm1 = DecisionMaker(1, "Dm_1", 0.5)
 dm2 = DecisionMaker(2, "Dm_2", 0.5)
 
 # Critérios a serem julgados
-cri_custo = Criterion(1, "Custo", CriterionType.COST)
-cri_complexidade = Criterion(2, "Complexidade", CriterionType.COST)
-cri_jogadores = Criterion(3, "Jogadores", CriterionType.BENEFIT)
-cri_jogabilidade = Criterion(4, "Jogabilidade", CriterionType.BENEFIT)
+cri_custo = Criterion(1, "cost", CriterionType.COST)
+cri_complexidade = Criterion(2, "complexity", CriterionType.COST)
+cri_jogadores = Criterion(3, "players", CriterionType.BENEFIT)
+cri_jogabilidade = Criterion(4, "playability", CriterionType.BENEFIT)
 
 # alternativas
 alt_1 = Alternative(1, "Palm Islands") # R$ 70
@@ -31,7 +33,7 @@ alt_6 = Alternative(6, "Scythe") # R$ 700
 # Modelinho
 
 criteria = [cri_custo, cri_complexidade, cri_jogadores, cri_jogabilidade]
-alternatives = [alt_1, alt_3, alt_4, alt_5, alt_6]
+alternatives = getBoardgames()
 decision_makers = [dm1, dm2]
 model = Model(5, criteria, alternatives, decision_makers)
 
@@ -74,62 +76,67 @@ total_normalized_cci = model.calculate_normalized_weight()
 ################
 
 # Julgamentos sobre as alternativas
+for item in criteria:
+    setCriterion(item, dm1, alternatives)
 
-cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_1.id, dm1.id, 1, 1))
-# cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_2.id, dm1.id, 0, 0))
-cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_3.id, dm1.id, 3, 5))
-cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_4.id, dm1.id, 3, 5))
-cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_5.id, dm1.id, 4, 5))
-cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_6.id, dm1.id, 5, 5))
+for item in criteria:
+    setCriterion(item, dm2, alternatives)
 
-cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_1.id, dm2.id, 2, 2))
-# cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_2.id, dm2.id, 0, 0))
-cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_3.id, dm2.id, 4, 4))
-cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_4.id, dm2.id, 4, 4))
-cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_5.id, dm2.id, 4, 5))
-cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_6.id, dm2.id, 5, 5))
+# cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_1.id, dm1.id, 1, 1))
+# # cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_2.id, dm1.id, 0, 0))
+# cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_3.id, dm1.id, 3, 5))
+# cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_4.id, dm1.id, 3, 5))
+# cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_5.id, dm1.id, 4, 5))
+# cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_6.id, dm1.id, 5, 5))
 
-cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_1.id, dm1.id, 1, 1))
-# cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_2.id, dm1.id, 3, 3))
-cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_3.id, dm1.id, 3, 3))
-cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_4.id, dm1.id, 3, 3))
-cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_5.id, dm1.id, 2, 5))
-cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_6.id, dm1.id, 3, 3))
+# cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_1.id, dm2.id, 2, 2))
+# # cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_2.id, dm2.id, 0, 0))
+# cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_3.id, dm2.id, 4, 4))
+# cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_4.id, dm2.id, 4, 4))
+# cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_5.id, dm2.id, 4, 5))
+# cri_custo.add_new_alternative_judgment(AlternativeJudgment(alt_6.id, dm2.id, 5, 5))
 
-cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_1.id, dm2.id, 1, 1))
-# cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_2.id, dm2.id, 2, 3))
-cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_3.id, dm2.id, 1, 2))
-cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_4.id, dm2.id, 3, 3))
-cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_5.id, dm2.id, 4, 4))
-cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_6.id, dm2.id, 3, 3))
+# cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_1.id, dm1.id, 1, 1))
+# # cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_2.id, dm1.id, 3, 3))
+# cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_3.id, dm1.id, 3, 3))
+# cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_4.id, dm1.id, 3, 3))
+# cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_5.id, dm1.id, 2, 5))
+# cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_6.id, dm1.id, 3, 3))
 
-cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_1.id, dm1.id, 2, 3))
-# cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_2.id, dm1.id, 3, 4))
-cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_3.id, dm1.id, 3, 4))
-cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_4.id, dm1.id, 2, 3))
-cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_5.id, dm1.id, 5, 5))
-cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_6.id, dm1.id, 4, 4))
+# cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_1.id, dm2.id, 1, 1))
+# # cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_2.id, dm2.id, 2, 3))
+# cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_3.id, dm2.id, 1, 2))
+# cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_4.id, dm2.id, 3, 3))
+# cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_5.id, dm2.id, 4, 4))
+# cri_complexidade.add_new_alternative_judgment(AlternativeJudgment(alt_6.id, dm2.id, 3, 3))
 
-cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_1.id, dm2.id, 2, 3))
-# cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_2.id, dm2.id, 3, 4))
-cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_3.id, dm2.id, 4, 5))
-cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_4.id, dm2.id, 2, 3))
-cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_5.id, dm2.id, 5, 5))
-cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_6.id, dm2.id, 3, 4))
+# cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_1.id, dm1.id, 2, 3))
+# # cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_2.id, dm1.id, 3, 4))
+# cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_3.id, dm1.id, 3, 4))
+# cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_4.id, dm1.id, 2, 3))
+# cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_5.id, dm1.id, 5, 5))
+# cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_6.id, dm1.id, 4, 4))
 
-cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_1.id, dm1.id, 3, 4))
-# cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_2.id, dm1.id, 3, 3))
-cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_3.id, dm1.id, 3, 3))
-cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_4.id, dm1.id, 4, 4))
-cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_5.id, dm1.id, 5, 5))
-cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_6.id, dm1.id, 3, 3))
+# cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_1.id, dm2.id, 2, 3))
+# # cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_2.id, dm2.id, 3, 4))
+# cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_3.id, dm2.id, 4, 5))
+# cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_4.id, dm2.id, 2, 3))
+# cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_5.id, dm2.id, 5, 5))
+# cri_jogadores.add_new_alternative_judgment(AlternativeJudgment(alt_6.id, dm2.id, 3, 4))
 
-cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_1.id, dm2.id, 4, 4))
-# cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_2.id, dm2.id, 3, 3))
-cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_3.id, dm2.id, 3, 4))
-cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_4.id, dm2.id, 3, 4))
-cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_5.id, dm2.id, 3, 4))
-cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_6.id, dm2.id, 3, 3))
+# cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_1.id, dm1.id, 3, 4))
+# # cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_2.id, dm1.id, 3, 3))
+# cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_3.id, dm1.id, 3, 3))
+# cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_4.id, dm1.id, 4, 4))
+# cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_5.id, dm1.id, 5, 5))
+# cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_6.id, dm1.id, 3, 3))
+
+# cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_1.id, dm2.id, 4, 4))
+# # cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_2.id, dm2.id, 3, 3))
+# cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_3.id, dm2.id, 3, 4))
+# cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_4.id, dm2.id, 3, 4))
+# cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_5.id, dm2.id, 3, 4))
+# cri_jogabilidade.add_new_alternative_judgment(AlternativeJudgment(alt_6.id, dm2.id, 3, 3))
 
 # julgamentos agregados
 print("Julgamentos agregados")

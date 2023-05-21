@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Palm Island",
+        "price": 70,
+        "complexity": 2,
+        "players": 2,
+        "playability": 8
+    },
+    {
+        "name": "Dixit",
+        "price": 290,
+        "complexity": 5,
+        "players": 6,
+        "playability": 7
+    },
+    {
+        "name": "Radlands",
+        "price": 288,
+        "complexity": 5,
+        "players": 2,
+        "playability": 7
+    },
+    {
+        "name": "Eldritch Horror",
+        "price": 460,
+        "complexity": 6,
+        "players": 8,
+        "playability": 10
+    },
+    {
+        "name": "Scythe",
+        "price": 700,
+        "complexity": 5,
+        "players": 5,
+        "playability": 5
+    }
+]
