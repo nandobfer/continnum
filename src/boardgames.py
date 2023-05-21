@@ -36,16 +36,22 @@ def judge(criteria, dm, alternatives):
         game = boardgames[alternative.id-1]
 
         for index, data in enumerate(game['data']):
-            rating = judgeData(game['data'][data], data)
+            rating = judgeData(game['data'][data], data, index)
             criteria[index].add_new_alternative_judgment(AlternativeJudgment(alternative.id, dm.id, rating, rating))
 
         for index, judgement in enumerate(game['judgement']):
             rating = game['judgement'][judgement][dm.id-1]
             criteria[index+2].add_new_alternative_judgment(AlternativeJudgment(alternative.id, dm.id, rating[0], rating[1]))
 
-def judgeData(value, data):
+def judgeData(value, data, benefit):
     min_value = min(boardgames, key=lambda x:x['data'][data])['data'][data]
     max_value = max(boardgames, key=lambda x:x['data'][data])['data'][data]
-    rating = 1 + ((value - min_value) * (5 - 1)) / (max_value - min_value)
+
+    rating = 0
+    if benefit:
+        rating = 1 + ((value - min_value) * (5 - 1)) / (max_value - min_value)
+    else:
+        rating = 5 - ((value - min_value) * (5 - 1)) / (max_value - min_value)
+    
 
     return rating

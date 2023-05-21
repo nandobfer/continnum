@@ -1,22 +1,5 @@
 [
     {
-        "name": "Palm Island",
-        "data": {
-            "price": 70,
-            "players": 2
-        },
-        "judgement": {
-            "complexity": [
-                [1, 2],
-                [1, 1]
-            ],
-            "playability": [
-                [3, 4],
-                [4, 4]
-            ]
-        }
-    },
-    {
         "name": "Dixit",
         "data": {
             "price": 290,

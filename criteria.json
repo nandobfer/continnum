@@ -19,8 +19,8 @@
         "name": "players",
         "type": "BENEFIT",
         "weight": [
-            [1, 1],
-            [2, 3]
+            [3, 3],
+            [3, 4]
         ]
     },
     {
