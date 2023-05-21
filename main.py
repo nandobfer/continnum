@@ -5,7 +5,7 @@ from src.enumerations.criterion_type import CriterionType
 from src.classes.model import Model
 from src.classes.alternative import Alternative
 from src.classes.alternative_judgment import AlternativeJudgment
-from src.boardgames import getBoardgames, setCriteria
+from src.boardgames import getBoardgames, setCriteria, judge
 
 
 ##################################
@@ -23,12 +23,7 @@ cri_jogadores = Criterion(3, "players", CriterionType.BENEFIT)
 cri_jogabilidade = Criterion(4, "playability", CriterionType.BENEFIT)
 
 # alternativas
-alt_1 = Alternative(1, "Palm Islands") # R$ 70
-# alt_2 = Alternative(2, "Planet") # procura-se
-alt_3 = Alternative(3, "Dixit") # R$ 290
-alt_4 = Alternative(4, "Radlands") # R$ 300
-alt_5 = Alternative(5, "Eldritch Horror") # R$ 466
-alt_6 = Alternative(6, "Scythe") # R$ 700
+## boardgames.py > getBoardgames()
 
 # Modelinho
 
@@ -76,8 +71,8 @@ total_normalized_cci = model.calculate_normalized_weight()
 ################
 
 # Julgamentos sobre as alternativas
-setCriteria(criteria, dm1, alternatives)
-setCriteria(criteria, dm2, alternatives)
+judge(criteria, dm1, alternatives)
+judge(criteria, dm2, alternatives)
 
 
 # julgamentos agregados

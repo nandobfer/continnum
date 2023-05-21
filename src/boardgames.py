@@ -17,16 +17,17 @@ def setCriteria(criteria, dm, alternatives):
     for alternative in alternatives:
         judge(criteria, alternative, dm)
 
-def judge(criteria, alternative, dm):
-    game = boardgames[alternative.id-1]
+def judge(criteria, dm, alternatives):
+    for alternative in alternatives:
+        game = boardgames[alternative.id-1]
 
-    for index, data in enumerate(game['data']):
-        rating = judgeData(game['data'][data], data)
-        criteria[index].add_new_alternative_judgment(AlternativeJudgment(alternative.id, dm.id, rating, rating))
+        for index, data in enumerate(game['data']):
+            rating = judgeData(game['data'][data], data)
+            criteria[index].add_new_alternative_judgment(AlternativeJudgment(alternative.id, dm.id, rating, rating))
 
-    for index, judgement in enumerate(game['judgement']):
-        rating = game['judgement'][judgement]
-        criteria[index+2].add_new_alternative_judgment(AlternativeJudgment(alternative.id, dm.id, rating[0], rating[1]))
+        for index, judgement in enumerate(game['judgement']):
+            rating = game['judgement'][judgement]
+            criteria[index+2].add_new_alternative_judgment(AlternativeJudgment(alternative.id, dm.id, rating[0], rating[1]))
 
 def judgeData(value, data):
     min_value = min(boardgames, key=lambda x:x['data'][data])['data'][data]
