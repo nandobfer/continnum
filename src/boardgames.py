@@ -40,7 +40,7 @@ def judge(criteria, dm, alternatives):
             criteria[index].add_new_alternative_judgment(AlternativeJudgment(alternative.id, dm.id, rating, rating))
 
         for index, judgement in enumerate(game['judgement']):
-            rating = game['judgement'][judgement]
+            rating = game['judgement'][judgement][dm.id-1]
             criteria[index+2].add_new_alternative_judgment(AlternativeJudgment(alternative.id, dm.id, rating[0], rating[1]))
 
 def judgeData(value, data):

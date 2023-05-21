@@ -17,10 +17,7 @@ dm1 = DecisionMaker(1, "Dm_1", 0.5)
 dm2 = DecisionMaker(2, "Dm_2", 0.5)
 
 # Critérios a serem julgados
-cri_custo = Criterion(1, "cost", CriterionType.COST)
-cri_complexidade = Criterion(2, "complexity", CriterionType.COST)
-cri_jogadores = Criterion(3, "players", CriterionType.BENEFIT)
-cri_jogabilidade = Criterion(4, "playability", CriterionType.BENEFIT)
+## boardgames.py > getCriteria()
 
 # alternativas
 ## boardgames.py > getBoardgames()
@@ -41,16 +38,6 @@ model = Model(5, criteria, alternatives, decision_makers)
 
 setCriteria(dm1)
 setCriteria(dm2)
-
-# dm1.add_new_criterion_judgment(CriterionJudgment(cri_custo.id, 2, 3))
-# dm1.add_new_criterion_judgment(CriterionJudgment(cri_complexidade.id, 2, 3))
-# dm1.add_new_criterion_judgment(CriterionJudgment(cri_jogadores.id, 1, 1))
-# dm1.add_new_criterion_judgment(CriterionJudgment(cri_jogabilidade.id, 5, 5))
-
-# dm2.add_new_criterion_judgment(CriterionJudgment(cri_custo.id, 3, 4))
-# dm2.add_new_criterion_judgment(CriterionJudgment(cri_complexidade.id, 3, 4))
-# dm2.add_new_criterion_judgment(CriterionJudgment(cri_jogadores.id, 2, 3))
-# dm2.add_new_criterion_judgment(CriterionJudgment(cri_jogabilidade.id, 5, 5))
 
 #################################
 # Cálculos feitos pelo servidor #
