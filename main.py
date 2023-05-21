@@ -5,7 +5,7 @@ from src.enumerations.criterion_type import CriterionType
 from src.classes.model import Model
 from src.classes.alternative import Alternative
 from src.classes.alternative_judgment import AlternativeJudgment
-from src.boardgames import getBoardgames, setCriteria, judge
+from src.boardgames import getBoardgames, getCriteria, setCriteria, judge
 
 
 ##################################
@@ -27,7 +27,8 @@ cri_jogabilidade = Criterion(4, "playability", CriterionType.BENEFIT)
 
 # Modelinho
 
-criteria = [cri_custo, cri_jogadores, cri_complexidade, cri_jogabilidade]
+# criteria = [cri_custo, cri_jogadores, cri_complexidade, cri_jogabilidade]
+criteria = getCriteria()
 alternatives = getBoardgames()
 decision_makers = [dm1, dm2]
 model = Model(5, criteria, alternatives, decision_makers)
@@ -38,15 +39,18 @@ model = Model(5, criteria, alternatives, decision_makers)
 
 # Julgamentos sobre os critérios (linha 21 da tabela)
 
-dm1.add_new_criterion_judgment(CriterionJudgment(cri_custo.id, 2, 3))
-dm1.add_new_criterion_judgment(CriterionJudgment(cri_complexidade.id, 2, 3))
-dm1.add_new_criterion_judgment(CriterionJudgment(cri_jogadores.id, 1, 1))
-dm1.add_new_criterion_judgment(CriterionJudgment(cri_jogabilidade.id, 5, 5))
+setCriteria(dm1)
+setCriteria(dm2)
 
-dm2.add_new_criterion_judgment(CriterionJudgment(cri_custo.id, 3, 4))
-dm2.add_new_criterion_judgment(CriterionJudgment(cri_complexidade.id, 3, 4))
-dm2.add_new_criterion_judgment(CriterionJudgment(cri_jogadores.id, 2, 3))
-dm2.add_new_criterion_judgment(CriterionJudgment(cri_jogabilidade.id, 5, 5))
+# dm1.add_new_criterion_judgment(CriterionJudgment(cri_custo.id, 2, 3))
+# dm1.add_new_criterion_judgment(CriterionJudgment(cri_complexidade.id, 2, 3))
+# dm1.add_new_criterion_judgment(CriterionJudgment(cri_jogadores.id, 1, 1))
+# dm1.add_new_criterion_judgment(CriterionJudgment(cri_jogabilidade.id, 5, 5))
+
+# dm2.add_new_criterion_judgment(CriterionJudgment(cri_custo.id, 3, 4))
+# dm2.add_new_criterion_judgment(CriterionJudgment(cri_complexidade.id, 3, 4))
+# dm2.add_new_criterion_judgment(CriterionJudgment(cri_jogadores.id, 2, 3))
+# dm2.add_new_criterion_judgment(CriterionJudgment(cri_jogabilidade.id, 5, 5))
 
 #################################
 # Cálculos feitos pelo servidor #

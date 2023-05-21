@@ -1,0 +1,34 @@
+[
+    {
+        "name": "cost",
+        "type": "COST",
+        "weight": [
+            [2, 3],
+            [3, 4]
+        ]
+    },
+    {
+        "name": "complexity",
+        "type": "COST",
+        "weight": [
+            [2, 3],
+            [3, 4]
+        ]
+    },
+    {
+        "name": "players",
+        "type": "BENEFIT",
+        "weight": [
+            [1, 1],
+            [2, 3]
+        ]
+    },
+    {
+        "name": "playability",
+        "type": "BENEFIT",
+        "weight": [
+            [5, 5],
+            [5, 5]
+        ]
+    }
+]

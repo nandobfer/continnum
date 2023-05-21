@@ -1,8 +1,13 @@
 import json
 from src.classes.alternative import Alternative
 from src.classes.alternative_judgment import AlternativeJudgment
+from src.enumerations.criterion_type import CriterionType
+from src.classes.criterion import Criterion
+from src.classes.criterion_judgment import CriterionJudgment
 
 boardgames = json.load(open('boardgames.json'))
+criteria = json.load(open('criteria.json'))
+_criteria = []
 
 def getBoardgames():
     alternatives = []
@@ -13,9 +18,18 @@ def getBoardgames():
 
     return alternatives
 
-def setCriteria(criteria, dm, alternatives):
-    for alternative in alternatives:
-        judge(criteria, alternative, dm)
+def getCriteria():
+
+    for index, criterion in enumerate(criteria):
+        cri = Criterion(index+1, criterion['name'], CriterionType.COST if criterion['type'] == 'COST' else CriterionType.BENEFIT)
+        _criteria.append(cri)
+
+    return _criteria
+
+def setCriteria(dm):
+    for index, criterion in enumerate(_criteria):
+        rating = criteria[index]['weight'][dm.id-1]
+        dm.add_new_criterion_judgment(CriterionJudgment(criterion.id, rating[0], rating[1]))
 
 def judge(criteria, dm, alternatives):
     for alternative in alternatives:
