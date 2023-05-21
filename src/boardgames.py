@@ -13,12 +13,11 @@ def getBoardgames():
 
     return alternatives
 
-def setCriterion(criteria, dm, alternatives):
+def setCriteria(criteria, dm, alternatives):
     for alternative in alternatives:
         judge(criteria, alternative, dm)
 
 def judge(criteria, alternative, dm):
-
     game = boardgames[alternative.id-1]
 
     for index, data in enumerate(game['data']):

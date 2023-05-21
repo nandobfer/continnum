@@ -5,7 +5,7 @@ from src.enumerations.criterion_type import CriterionType
 from src.classes.model import Model
 from src.classes.alternative import Alternative
 from src.classes.alternative_judgment import AlternativeJudgment
-from src.boardgames import getBoardgames, setCriterion
+from src.boardgames import getBoardgames, setCriteria
 
 
 ##################################
@@ -76,8 +76,8 @@ total_normalized_cci = model.calculate_normalized_weight()
 ################
 
 # Julgamentos sobre as alternativas
-setCriterion(criteria, dm1, alternatives)
-setCriterion(criteria, dm2, alternatives)
+setCriteria(criteria, dm1, alternatives)
+setCriteria(criteria, dm2, alternatives)
 
 
 # julgamentos agregados
