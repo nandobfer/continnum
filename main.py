@@ -1,12 +1,11 @@
 from src.classes.decision_maker import DecisionMaker
-from src.classes.criterion import Criterion
-from src.classes.criterion_judgment import CriterionJudgment
-from src.enumerations.criterion_type import CriterionType
 from src.classes.model import Model
-from src.classes.alternative import Alternative
-from src.classes.alternative_judgment import AlternativeJudgment
 from src.boardgames import getBoardgames, getCriteria, setCriteria, judge
+import sys, logging
 
+logging.basicConfig(level=logging.DEBUG if '-v' in sys.argv else logging.INFO)
+
+verbose = True 
 
 ##################################
 # Criação dos objetos no cliente #
@@ -74,16 +73,16 @@ model.generate_all_aggregated_judgments()
 print("SIP e SIN")
 model.calculate_criteria_ideal_solution()
 
-print()
+print('')
 print("D+")
 model.sum_positive_alternative_distance()
-print()
+print('')
 print("D-")
 model.sum_negative_alternative_distance()
 
 model.calculate_alternatives_score()
 
-print()
+print('')
 print("Score")
 ranking = model.get_alternative_ranking()
 for alt in ranking:

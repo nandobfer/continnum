@@ -1,4 +1,4 @@
-import json
+import json, logging
 from src.classes.alternative import Alternative
 from src.classes.alternative_judgment import AlternativeJudgment
 from src.enumerations.criterion_type import CriterionType
@@ -38,13 +38,14 @@ def judge(criteria: list[Criterion], dm, alternatives):
 
         for index, data in enumerate(game['data']):
             rating = judgeData(game['data'][data], data, index)
-            # print(f"data_name: {data}, data_value: {game['data'][data]}, rating: {rating}")
             criteria[index].add_new_alternative_judgment(AlternativeJudgment(alternative.id, dm.id, rating, rating))
             print({data: [criteria[index].alternative_judgments[-1].min_value, criteria[index].alternative_judgments[-1].max_value]})
+            print(f'should be {rating}')
 
         for index, judgement in enumerate(game['judgement']):
+            index = index+2
             rating = game['judgement'][judgement][dm.id-1]
-            criteria[index+2].add_new_alternative_judgment(AlternativeJudgment(alternative.id, dm.id, rating[0], rating[1]))
+            criteria[index].add_new_alternative_judgment(AlternativeJudgment(alternative.id, dm.id, rating[0], rating[1]))
             print({judgement: [criteria[index].alternative_judgments[-1].min_value, criteria[index].alternative_judgments[-1].max_value]})
             print(f'should be {rating}')
         

@@ -1,6 +1,7 @@
 from .alternative_judgment import AlternativeJudgment
 from .aggregated_judgment import AggregatedJudgment
 from ..enumerations.criterion_type import CriterionType
+import logging
 
 
 class Criterion:

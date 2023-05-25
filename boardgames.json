@@ -53,7 +53,7 @@
     {
         "name": "Scythe",
         "data": {
-            "price": 700,
+            "price": 545,
             "players": 5
         },
         "judgement": {
@@ -64,6 +64,23 @@
             "playability": [
                 [3, 4],
                 [3, 3]
+            ]
+        }
+    },
+    {
+        "name": "Time's Up",
+        "data": {
+            "price": 150,
+            "players": 12
+        },
+        "judgement": {
+            "complexity": [
+                [1, 2],
+                [1, 2]
+            ],
+            "playability": [
+                [5, 5],
+                [5, 5]
             ]
         }
     }

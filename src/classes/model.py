@@ -1,6 +1,7 @@
 from .criterion import Criterion
 from .decision_maker import DecisionMaker
 from .alternative import Alternative
+import logging
 
 # from enumerations.five_linguistic_terms import FiveLinguisticTerms
 # from enumerations.seven_linguistic_terms import SevenLinguisticTerms
@@ -68,7 +69,7 @@ class Model:
       total_normalized_cci += cri.calculate_normalized_cci(total_cci)
       print(cri.description, cri.cci, cri.normalized_cci)
 
-    print()
+    print('')
     self.normalized_cci = total_normalized_cci
     return self.normalized_cci
 
@@ -76,7 +77,7 @@ class Model:
     for cri in self.criteria:
       for alt in self.alternatives:
         cri.generate_aggregated_judgment_table(alt)
-      print()
+      print('')
 
   def sum_positive_alternative_distance(self):
     for alt in self.alternatives:
